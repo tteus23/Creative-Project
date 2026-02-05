@@ -20,6 +20,7 @@ header{
     align-items: center;
     z-index: 3;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #0f0f1e 0%, #1f1f3a 100%);
 }
 
 .logo{
@@ -30,12 +31,16 @@ header{
     text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
 }
 
-header nav ul{
+header nav.nav-desktop{
+    display: flex;
+}
+
+header nav.nav-desktop ul{
     display: flex;
     gap: 48px;
 }
 
-header nav ul li a{
+header nav.nav-desktop ul li a{
     cursor: pointer;
     position: relative;
     padding: 5px 0;
@@ -45,7 +50,7 @@ header nav ul li a{
     transition: color 0.3s ease;
 }
 
-header nav ul li a::after{
+header nav.nav-desktop ul li a::after{
     content: '';
     position: absolute;
     left: 0;
@@ -55,8 +60,82 @@ header nav ul li a::after{
     background-color: #00f7ff;
     transition: width 0.5s ease;
 }
-header nav ul li a:hover::after{
+header nav.nav-desktop ul li a:hover::after{
     width: 100%;
+}
+
+/* Menu Mobile */
+.hamburger{
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 4;
+}
+
+.hamburger span{
+    width: 25px;
+    height: 3px;
+    background-color: #00f7ff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1){
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2){
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3){
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.nav-mobile{
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background: rgba(15, 15, 30, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+    z-index: 3;
+}
+
+.nav-mobile.active{
+    display: block;
+}
+
+.nav-mobile ul{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.nav-mobile ul li{
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+}
+
+.nav-mobile ul li:last-child{
+    border-bottom: none;
+}
+
+.nav-mobile ul li a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-mobile ul li a:hover{
+    color: #00f7ff;
 }
 
 .container{
@@ -64,6 +143,10 @@ header nav ul li a:hover::after{
     position: relative;
     background: linear-gradient(135deg, #0f0f1e 0%, #1f1f3a 100%);
     overflow: hidden;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .container::before{
     content: '';
@@ -239,6 +322,9 @@ header nav ul li a:hover::after{
     height: 100%;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .item{
@@ -248,6 +334,26 @@ header nav ul li a:hover::after{
     align-items: center;
     opacity: 0;
     transition: opacity 0.6s ease;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .item{
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+    }
+
+    .item.active{
+        opacity: 1;
+    }
 }
 
 .active{
@@ -294,6 +400,14 @@ header nav ul li a:hover::after{
     z-index: 2;
 }
 
+@media (max-width: 768px) {
+    .produto-img{
+        width: 100%;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+}
+
 .produto-img img{
     max-width: 80%;
     max-height: 60%;
@@ -308,6 +422,16 @@ header nav ul li a:hover::after{
     justify-content: center;
     z-index: 2;
     flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .content{
+        width: 100%;
+        padding: 20px;
+        padding-right: 20px;
+        text-align: center;
+        align-items: center;
+    }
 }
 
 .product-tag{
@@ -326,12 +450,41 @@ header nav ul li a:hover::after{
     margin-bottom: 20px;
 }
 
+@media (max-width: 768px) {
+    .product-name{
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-name{
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+}
+
 .desc{
     font-size: 1.1rem;
     color: #b8b8d0;
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .desc{
+        font-size: 1rem;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .desc{
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
 }
 
 .btn{
@@ -363,6 +516,19 @@ header nav ul li a:hover::after{
     z-index: 5;
 }
 
+@media (max-width: 768px) {
+    .arrows{
+        position: absolute;
+        width: 100%;
+        top: auto;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
 .arrow-btn{
     width: 50px;
     height: 50px;
@@ -374,6 +540,18 @@ header nav ul li a:hover::after{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 480px) {
+    .arrow-btn{
+        width: 40px;
+        height: 40px;
+    }
+
+    .arrow-btn svg{
+        width: 12px;
+        height: 12px;
+    }
 }
 
 .arrow-btn:hover{
@@ -687,3 +865,422 @@ header nav ul li a:hover::after{
     color: #808090;
     font-size: 0.85rem;
 }
+
+/* RESPONSIVIDADE */
+
+/* Tablets - 768px */
+@media (max-width: 768px) {
+    header{
+        padding: 15px 30px;
+    }
+
+    .logo{
+        font-size: 1.5rem;
+    }
+
+    .hamburger{
+        display: flex;
+    }
+
+    header nav.nav-desktop{
+        display: none;
+    }
+
+    .container{
+        height: auto;
+        min-height: 100vh;
+        margin-top: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .list{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .produtos-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .titulo-prod{
+        font-size: 2rem;
+        padding: 0 20px;
+    }
+
+    .card-contato{
+        width: 95%;
+        padding: 30px 20px;
+    }
+
+    .footer-content{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* Celulares - 480px */
+@media (max-width: 480px) {
+    header{
+        padding: 12px 20px;
+    }
+
+    .logo{
+        font-size: 1.2rem;
+    }
+
+    .hamburger span{
+        width: 22px;
+        height: 2.5px;
+    }
+
+    .container{
+        height: auto;
+        min-height: 100vh;
+        margin-top: 60px; /* evita overlap com header fixo */
+        padding-top: 20px;
+        display: block;
+    }
+
+    /* permitir que as setas fiquem visíveis fora do .list */
+    .container{
+        overflow: visible;
+    }
+
+    .container::before{
+        width: 300px;
+        height: 300px;
+    }
+
+    .list{
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Garantir que as setas apareçam corretamente e não sejam cortadas */
+    .arrows{
+        position: relative !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+        margin-top: 12px !important;
+        z-index: 6 !important;
+    }
+
+    .arrow-btn{
+        z-index: 7 !important;
+        background-color: rgba(0,0,0,0.25) !important;
+        border-color: rgba(0,247,255,0.25) !important;
+    }
+
+    .item{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 350px;
+        width: 100%;
+    }
+
+    .product-tag{
+        font-size: 0.75rem;
+    }
+
+    .btn{
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .produto-img{
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .produto-img img{
+        width: auto;
+        max-width: 60%;
+        max-height: 180px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .content{
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .indicador{
+        position: static !important;
+        transform: none !important;
+        margin: 12px auto 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .numbers{
+        font-size: 2rem;
+    }
+
+    .dot{
+        width: 30px;
+        height: 3px;
+    }
+
+    .dot.active{
+        width: 40px;
+    }
+
+    .tech-circulo .circulo{
+        opacity: 0.1;
+    }
+
+    .produtos{
+        padding: 80px 15px 40px;
+        height: auto;
+        min-height: 100vh;
+        margin-top: 0;
+    }
+
+    .titulo-prod{
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+
+    .produtos-grid{
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .produto-card{
+        border-radius: 10px;
+    }
+
+    .produto-card-img{
+        height: 200px;
+    }
+
+    /* Forçar setas visíveis e posicionadas à esquerda e direita do slide */
+    .arrows{
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 12px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        z-index: 999 !important;
+        pointer-events: auto !important;
+    }
+
+    .arrow-btn{
+        width: 44px !important;
+        height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        backdrop-filter: blur(4px) !important;
+    }
+
+    /* Pequeno ajuste nos svgs para ficar visível */
+    .arrow-btn svg{
+        width: 12px !important;
+        height: 12px !important;
+        display: block;
+    }
+
+    /* Certifica que .list/container não cortem as setas */
+    .list, .container{
+        overflow: visible !important;
+    }
+
+    .produto-card-content{
+        padding: 20px;
+    }
+
+    .card-tag{
+        font-size: 0.7rem;
+    }
+
+    .produto-card-content h3{
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .card-desc{
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .card-price{
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 15px;
+    }
+
+    .price{
+        font-size: 1.1rem;
+    }
+
+    .card-btn{
+        width: 100%;
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .contato{
+        padding-top: 100px;
+        padding-bottom: 40px;
+        height: auto;
+        min-height: 100vh;
+        margin-top: 0;
+    }
+
+    .contato::before{
+        width: 300px;
+        height: 300px;
+    }
+
+    .titulo-contato{
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    .card-contato{
+        width: 95%;
+        max-width: 100%;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .card-contato input{
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .envio{
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .footer{
+        padding: 40px 15px 15px;
+    }
+
+    .footer-content{
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-section h4{
+        font-size: 1.2rem;
+    }
+
+    .footer-section h5{
+        font-size: 1rem;
+    }
+
+    .footer-section p{
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom{
+        padding-top: 15px;
+    }
+
+    .footer-bottom p{
+        font-size: 0.75rem;
+    }
+}
+
+/* Mobile fixes: garantir que apenas o slide ativo apareça e ajustar indicadores/imagens */
+@media (max-width: 768px) {
+    .list{
+        overflow: hidden;
+    }
+
+    /* Esconde todos os itens exceto o ativo para evitar empilhamento e alturas cumulativas */
+    .item{
+        display: none !important;
+        opacity: 0 !important;
+        position: relative !important;
+        inset: auto !important;
+        height: auto !important;
+    }
+
+    .item.active{
+        display: flex !important;
+        opacity: 1 !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Ajustes de imagem para caber bem no mobile */
+    .produto-img img{
+        width: auto;
+        max-width: 70%;
+        max-height: 160px;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    /* Indicador fica abaixo do slide, não em posição absoluta */
+    .indicador{
+        position: static !important;
+        transform: none !important;
+        margin: 16px auto 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .numbers{
+        font-size: 1.8rem;
+    }
+
+    /* Setas em local fixo na base com espaçamento adequado */
+    .arrows{
+        position: relative !important;
+        bottom: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    }
+}
+

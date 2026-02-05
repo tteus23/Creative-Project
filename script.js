@@ -47,6 +47,35 @@ prevButton.addEventListener('click', function(){
 
 nextButton.addEventListener('click', function(){
     update(1)
+})
+
+/* HAMBURGER MENU */
+const hamburger = document.getElementById('hamburger')
+const navMobile = document.getElementById('nav-mobile')
+const navMobileLinks = navMobile.querySelectorAll('a')
+
+hamburger.addEventListener('click', function(){
+    hamburger.classList.toggle('active')
+    navMobile.classList.toggle('active')
+})
+
+// Fechar menu ao clicar em um link
+navMobileLinks.forEach(link => {
+    link.addEventListener('click', function(){
+        hamburger.classList.remove('active')
+        navMobile.classList.remove('active')
+    })
+})
+
+// Fechar menu ao clicar fora dele
+document.addEventListener('click', function(event){
+    const isClickInsideMenu = navMobile.contains(event.target)
+    const isClickOnHamburger = hamburger.contains(event.target)
+    
+    if(!isClickInsideMenu && !isClickOnHamburger && navMobile.classList.contains('active')){
+        hamburger.classList.remove('active')
+        navMobile.classList.remove('active')
+    }
 }) 
 
 
